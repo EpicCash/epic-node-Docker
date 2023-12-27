@@ -1,23 +1,31 @@
 FROM ubuntu:20.04
 
 RUN apt-get update \
-  && apt-get install -y libncurses5 \
-  && apt-get install -y libncursesw5 \
-  && apt-get install -y zlib1g \
-  && apt-get install -y screen \
-  && apt-get install -y locales \
+  && apt-get install -y sudo openssl libncurses5 libncursesw5 libncursesw6 zlib1g screen locales \
   && rm -rf /var/lib/apt/lists/*
 
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en
 
-ADD epic-node /root/epic-node
-RUN chmod +x /root/epic-node
-ADD entrypoint.sh /root/entrypoint.sh
-RUN chmod +x /root/entrypoint.sh
-ADD foundation.json /epic/foundation.json
-ADD epic-server.toml /epic/epic-server.toml
-ENTRYPOINT ["/root/entrypoint.sh"]
+RUN useradd -u 1000 -G sudo -U -m -s /bin/bash epicnode \
+  && echo "epicnode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+WORKDIR /home/epicnode
+USER epicnode
+RUN mkdir -p /home/epicnode/.epic/main
+
+COPY --chown=epicnode:epicnode entrypoint.sh .
+RUN chmod +x entrypoint.sh
+
+COPY --chown=epicnode:epicnode epic-node .
+RUN chmod +x ~/epic-node
+
+COPY foundation.json .epic/main/foundation.json
+COPY epic-server.toml .epic/main/epic-server.toml
+
+RUN sudo locale-gen en_US.UTF-8
+
+ENTRYPOINT ["./entrypoint.sh"]
 
 
 
