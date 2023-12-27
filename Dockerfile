@@ -6,6 +6,7 @@ RUN apt-get update \
 
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en
+RUN locale-gen en_US.UTF-8
 
 RUN useradd -u 1000 -G sudo -U -m -s /bin/bash epicnode \
   && echo "epicnode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -22,8 +23,6 @@ RUN chmod +x epic-node
 
 COPY --chown=epicnode:epicnode foundation.json .epic/main/foundation.json
 COPY --chown=epicnode:epicnode epic-server.toml .epic/main/epic-server.toml
-
-RUN sudo locale-gen en_US.UTF-8
 
 ENTRYPOINT ["./entrypoint.sh"]
 
