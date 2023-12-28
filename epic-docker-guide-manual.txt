@@ -37,19 +37,19 @@ $ docker load < epic-docker.tar (downloaded from Repo or created with commit/sav
 
 * Image epic-node ready to run as container with entrypoint
 * Run if built with Make and Dockerfile - user already defined
-$ docker run --restart always --name epic-node -d epic-node
+$ docker run --restart always --name epic-node -h 'epic-node' -d epic-node
 
 * Run if built manually with commit/save (needs USER and ENV 'LANG' set in cmd line)
-$ docker run --restart always --name epic-node --user epicnode:epicnode -d -e LANG='en_US.UTF-8' epic-node 
+$ docker run --restart always --name epic-node -h 'epic-node' --user epicnode:epicnode -d -e LANG='en_US.UTF-8' epic-node 
 
 * Check node running
 $ docker logs -f epic-node (<ctrl>C to exit)
 
 * Interact with running container
 $ docker exec -it epic-node bash
-epicnode@epic-node-ID:/# screen -r server-node (attach to screen running EPIC node)
-(Note: <ctrl>A then D to detach from screen and back to epicnode@epic-node-ID:)
-epicnode@epic-node-ID:/# exit (to close Docker Container)
+epicnode@epic-node:/# screen -r server-node (attach to screen running EPIC node)
+(Note: <ctrl>A then D to detach from screen and back to epicnode@epic-node:)
+epicnode@epic-node:/# exit (to close Docker Container)
 $
 
 * Stop/Start Container
