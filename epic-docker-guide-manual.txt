@@ -1,0 +1,58 @@
+## Docker .tar File Creation
+
+# Manual Container creation process (If tar downloaded from Repo, skip to docker load line)
+# You can also put epic binary (named epic-node) in same folder cloned from Repo and run Make
+
+:$ sudo docker pull ubuntu:20.04
+:$ sudo docker run -it --name epic-dock ubuntu:20.04 bash
+
+/# <- *inside running container*
+/# apt update 
+/# apt -y install sudo openssl libncurses5 libncursesw5 libncursesw6 zlib1g screen locales nano
+/# useradd -u 1000 -G sudo -U -m -s /bin/bash epicnode
+/# echo "epicnode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+/# su epicnode
+/# mkdir -p /home/epicnode/.epic/main
+
+:$ <- run these from another terminal with container running and in Repo cloned folder
+:$ sudo docker cp foundation.json epic-dock:/home/epicnode/.epic/main/foundation.json
+:$ sudo docker cp epic-server.toml epic-dock:/home/epicnode/.epic/main/epic-server.toml
+:$ sudo docker cp entrypoint.sh epic-dock:/home/epicnode/entrypoint.sh
+:$ sudo docker cp epic-node epic-dock:/home/epicnode/epic-node
+
+/# <- *inside running container*
+/# chmod +x entrypoint.sh 
+/# chmod +x epic-node
+
+:$ <- run these from another terminal with container running and in Repo cloned folder
+:$ sudo docker commit --change='ENTRYPOINT ["/home/epicnode/entrypoint.sh"]' epic-dock epic-node
+:$ sudo docker save -o epic-docker.tar epic-node
+:$ sudo docker stop epic-dock
+:$ sudo docker rm epic-dock) <-remove build container (no entrypoint)
+
+# Docker File Execution and Interaction
+
+:$ sudo docker load < epic-docker.tar (downloaded from Repo or created with commit/save)
+
+* Image epic-node ready to run as container with entrypoint
+:$ sudo docker run --name epic-node -d epic-node (if built with Make and Dockerfile - user already defined)
+:$ sudo docker run --name epic-node --user epicnode:epicnode -d epic-node (if built manually with commit/save)
+
+* Check node running
+:$ sudo docker logs -f epic-node (<ctrl>C to exit)
+
+* Interact with running container
+:$ sudo docker exec -it epic-node bash
+epicnode@epic-node-ID:/# screen -r server-node (attach to screen running EPIC node)
+(Note: <ctrl>A then D to detach from screen and back to epicnode@epic-node-ID:)
+epicnode@epic-node-ID:/# exit (to close Docker Container)
+:$
+
+* Stop/Start Container
+:$ sudo docker stop epic-node
+:$ sudo docker start epic-node
+
+* Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X-Y to save)
+  5 1 */2 * * sudo docker stop epic-node && sleep 15 && sudo docker start epic-node
+
+## Docker Guide end
