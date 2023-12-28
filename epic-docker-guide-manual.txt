@@ -37,10 +37,10 @@ $ docker load < epic-docker.tar (downloaded from Repo or created with commit/sav
 
 * Image epic-node ready to run as container with entrypoint
 * Run if built with Make and Dockerfile - user already defined
-$ docker run --name epic-node -d epic-node
+$ docker run --restart always --name epic-node -d epic-node
 
 * Run if built manually with commit/save (needs USER and ENV 'LANG' set in cmd line)
-$ docker run --name epic-node --user epicnode:epicnode -d -e LANG='en_US.UTF-8' epic-node 
+$ docker run --restart always --name epic-node --user epicnode:epicnode -d -e LANG='en_US.UTF-8' epic-node 
 
 * Check node running
 $ docker logs -f epic-node (<ctrl>C to exit)
