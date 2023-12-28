@@ -1,4 +1,4 @@
-* Create Docker Image  'epic-node'
+* Create Docker Image 'epic-node'
 :~$ sudo docker load < epic-docker.tar (from Release)
 
 * Image epic-node ready to run as container
