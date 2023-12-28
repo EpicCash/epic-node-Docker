@@ -22,6 +22,6 @@ epicnode@epic-node-ID:/# exit (to leave Docker)
 :~$ sudo docker rm epic-node (container must be stopped first)
 :~$ sudo docker rmi epic-node (container must be removed first)
 
-* Create crontab to restart every other day (add to end of crontab file <ctrl>X-Y to save)
-:~$ crontab -e 5 1 */2 * * sudo docker stop epic-node && sleep 15 && sudo docker start epic-node
+* Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X-Y to save)
+5 1 */2 * * sudo docker stop epic-node && sleep 20 && sudo docker start epic-node
 
