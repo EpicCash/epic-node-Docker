@@ -2,7 +2,7 @@
 :~$ sudo docker load < epic-docker.tar (from Release)
 
 * Image epic-node ready to run as container
-:~$ sudo docker run --name epic-node -d epic-node
+:~$ sudo docker run --restart always --name epic-node -d epic-node
 
 * Check node running
 :~$ sudo docker logs -f epic-node (<ctrl>C to exit)
