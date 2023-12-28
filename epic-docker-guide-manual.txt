@@ -13,7 +13,7 @@
 /# echo "epicnode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 /# LANG=en_US.UTF-8  
 /# LANGUAGE=en_US:en
-/# locale-gen en_US.UTF-8
+/# sudo locale-gen en_US.UTF-8
 /# su epicnode
 /# mkdir -p /home/epicnode/.epic/main
 
