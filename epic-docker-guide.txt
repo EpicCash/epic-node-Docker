@@ -1,7 +1,9 @@
+# Running epic node Docker built with make and Dockerfile in Release
+
 * Create Docker Image 'epic-node'
 :~$ sudo docker load < epic-docker.tar (from Release)
 
-* Image epic-node ready to run as container
+* Image epic-node ready to run as container (USER and ENV already set from Dockerfile)
 :~$ sudo docker run --restart always --name epic-node -d epic-node
 
 * Check node running
