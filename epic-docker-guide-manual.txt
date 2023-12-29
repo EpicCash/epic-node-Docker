@@ -22,8 +22,7 @@ $ docker cp epic-node epic-dock:/home/epicnode/epic-node
 
 :/$ <- *inside running container*
 :/$ cd /home/epicnode
-:~$ chown epicnode:epicnode entrypoint.sh
-:~$ chown epicnode:epicnode epic-node
+:~$ chown -R epicnode:epicnode .
 :~$ chmod +x entrypoint.sh 
 :~$ chmod +x epic-node
 
