@@ -34,9 +34,9 @@ $ sudo docker logs -f epic-node (<ctrl>C to exit)
 
 * Interact with running container
 $ sudo docker exec -it epic-node bash
-epicnode@epic-node:/# screen -r server-node (attach to screen running EPIC node)
-<ctrl>A then D to detach from screen and back to epicnode@epic-node:
-epicnode@epic-node:/# exit (to leave Docker)
+epicnode@epic-node:/~$ screen -r server-node (attach to screen running EPIC node)
+<ctrl>A then D to detach from screen and back to epicnode@epic-node:~$
+epicnode@epic-node:/~$ exit (to leave Docker)
 $
 
 * Stop/Start Container
