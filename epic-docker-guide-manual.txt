@@ -1,7 +1,7 @@
 ## Docker .tar File Creation (no Dockerfile)
 
 # Manual Container creation process (If tar downloaded from Repo, skip to docker load line)
-# You can also put epic binary (named epic-node) in same folder cloned from Repo and run Make
+# You can also put epic binary (renamed epic-node) in same folder cloned from Repo and run Make
 
 $ docker pull ubuntu:20.04
 $ docker run -it --name epic-dock ubuntu:20.04 bash
@@ -11,7 +11,7 @@ $ docker run -it --name epic-dock ubuntu:20.04 bash
 :/$ apt -y install sudo openssl libncurses5 libncursesw5 libncursesw6 zlib1g screen locales nano
 :/$ useradd -u 1000 -G sudo -U -m -s /bin/bash epicnode
 :/$ echo "epicnode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-:/$ sudo locale-gen en_US.UTF-8
+:/$ locale-gen en_US.UTF-8
 :/$ mkdir -p /home/epicnode/.epic/main
 
 $ <- run these from another terminal with container running and in Repo cloned folder
@@ -22,6 +22,8 @@ $ docker cp epic-node epic-dock:/home/epicnode/epic-node
 
 :/$ <- *inside running container*
 :/$ cd /home/epicnode
+:~$ chown epicnode:epicnode entrypoint.sh
+:~$ chown epicnode:epicnode epic-node
 :~$ chmod +x entrypoint.sh 
 :~$ chmod +x epic-node
 
@@ -58,5 +60,4 @@ $ docker stop epic-node
 $ docker start epic-node
 
 * Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X-Y to save)
-  5 1 */2 * * sudo docker stop epic-node && sleep 15 && sudo docker start epic-node
-
+  5 1 */2 * * docker stop epic-node && sleep 20 && docker start epic-node
