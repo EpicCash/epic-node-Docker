@@ -21,5 +21,5 @@ $ docker stop epic-node
 $ docker start epic-node
 
 * Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X-Y to save)
-  5 1 */2 * * sudo docker stop epic-node && sleep 15 && sudo docker start epic-node
+  5 1 */2 * * docker stop epic-node && sleep 20 && docker start epic-node
 
