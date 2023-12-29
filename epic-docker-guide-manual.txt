@@ -1,4 +1,4 @@
-## Docker .tar File Creation
+## Docker .tar File Creation (no Dockerfile)
 
 # Manual Container creation process (If tar downloaded from Repo, skip to docker load line)
 # You can also put epic binary (named epic-node) in same folder cloned from Repo and run Make
@@ -35,8 +35,9 @@ $ docker rm epic-dock <-remove build container (no entrypoint)
 
 $ docker load < epic-docker.tar (downloaded from Repo or created with commit/save)
 
-* Image epic-node ready to run as container with entrypoint
-* Run if built with Make and Dockerfile - user already defined
+* Image epic-node ready to run as container
+
+* Run if built with Make and Dockerfile (USER and ENV already set)
 $ docker run --restart always --name epic-node -h 'epic-node' -d epic-node
 
 * Run if built manually with commit/save (needs USER and ENV 'LANG' set in cmd line)
@@ -47,9 +48,9 @@ $ docker logs -f epic-node (<ctrl>C to exit)
 
 * Interact with running container
 $ docker exec -it epic-node bash
-epicnode@epic-node:/# screen -r server-node (attach to screen running EPIC node)
-(Note: <ctrl>A then D to detach from screen and back to epicnode@epic-node:)
-epicnode@epic-node:/# exit (to close Docker Container)
+epicnode@epic-node:/~$ screen -r server-node (attach to screen running EPIC node)
+  (Note: <ctrl>A then D to detach from screen and back to epicnode@epic-node:~$)
+epicnode@epic-node:/~$ exit (to close Docker Container)
 $
 
 * Stop/Start Container
@@ -59,4 +60,3 @@ $ docker start epic-node
 * Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X-Y to save)
   5 1 */2 * * sudo docker stop epic-node && sleep 15 && sudo docker start epic-node
 
-## Docker Guide end
