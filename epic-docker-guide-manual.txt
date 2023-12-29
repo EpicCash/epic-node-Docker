@@ -4,7 +4,7 @@
 # You can also put epic binary (renamed epic-node) in same folder cloned from Repo and run Make
 
 $ docker pull ubuntu:20.04
-$ docker run -it --name epic-dock ubuntu:20.04 bash
+$ docker run -it --name epic-dock ubuntu:20.04 bash (create temp build container)
 
 :/$ <- *inside running container*
 :/$ apt update
