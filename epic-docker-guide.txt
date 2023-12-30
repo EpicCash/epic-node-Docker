@@ -1,26 +1,41 @@
-# Run epic-node Docker from Repo Release .tar file
-# You can also put epic binary (renamed epic-node) in cloned Repo folder and run make to create .tar
+# Running Epic Node Server from Docker .tar created with Dockerfile
 
-* Create Image epic-node from .tar
+# Note: Download .tar from Repo Release
+# Note: You can also put epic binary (renamed epic-node) in cloned Repo folder and run make to create .tar
+
+# Create Image epic-node from .tar
+
 $ docker load < epic-docker.tar
 
-* Image epic-node ready to run as container (user: epicnode)
+# Image epic-node ready to run as container (user: epicnode)
+
 $ docker run --restart always --name epic-node -h 'epic-node' -d epic-node
 
-* Check node running
-$ docker logs -f epic-node (<ctrl>C to exit)
+# Check node running
 
-* Interact with running container
+$ docker logs -f epic-node (<ctrl>C to exit) or $ docker stats (<ctrl>C to exit)
+
+# Interact with running container
+
 $ docker exec -it epic-node bash
-epicnode@epic-node:/~$ screen -r server-node (attach to screen running EPIC node)
+  epicnode@epic-node:~$ screen -r server-node (attach to screen running Epic Node Server)
   <ctrl>A then D to detach from screen and back to epicnode@epic-node:~$
-epicnode@epic-node:/~$ exit (to leave Docker)
+  epicnode@epic-node:~$ exit (to leave Container)
 $
 
-* Stop/Start Container
+# Stop/Start Container
+
 $ docker stop epic-node
 $ docker start epic-node
 
-* Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X-Y to save)
+# Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X then Y to save)
   5 1 */2 * * docker stop epic-node && sleep 20 && docker start epic-node
+
+# Note: If node data becomes corrupted or server gets hung up:
+# Stop and delete Container and Image and re-run load and run lines above.
+
+$ docker stop epic-node
+$ docker rm epic-node
+$ docker rmi epic-node
+
 

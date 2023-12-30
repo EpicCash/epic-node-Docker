@@ -64,3 +64,11 @@ $ docker start epic-node
 
 # Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X-Y to save)
   5 1 */2 * * docker stop epic-node && sleep 20 && docker start epic-node
+
+# Note: If node data becomes corrupted or server gets hung up:
+# Stop and delete Container and Image and re-run load and run lines above.
+
+$ docker stop epic-node
+$ docker rm epic-node
+$ docker rmi epic-node
+
