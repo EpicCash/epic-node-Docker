@@ -1,9 +1,10 @@
-# Run Docker from Repo downloaded .tar file
-# You can also put epic binary (renamed epic-node) in cloned Repo folder and run Make to create .tar
+# Run epic-node Docker from Repo Release .tar file
+# You can also put epic binary (renamed epic-node) in cloned Repo folder and run make to create .tar
 
+* Create Image epic-node from .tar
 $ docker load < epic-docker.tar
 
-* Image epic-node ready to run as container (USER and ENV already set from Dockerfile
+* Image epic-node ready to run as container (user: epicnode)
 $ docker run --restart always --name epic-node -h 'epic-node' -d epic-node
 
 * Check node running
