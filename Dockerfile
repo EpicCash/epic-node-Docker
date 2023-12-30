@@ -24,7 +24,7 @@ RUN chmod +x epic-node
 COPY --chown=epicnode:epicnode foundation.json .epic/main/foundation.json
 COPY --chown=epicnode:epicnode epic-server.toml .epic/main/epic-server.toml
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/home/epicnode/entrypoint.sh"]
 
 
 
