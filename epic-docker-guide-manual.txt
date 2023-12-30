@@ -1,7 +1,8 @@
 ## Docker .tar File Creation (no Dockerfile)
 
-# Manual Container creation process (If tar downloaded from Repo, skip to docker load line)
-# You can also put epic binary (renamed epic-node) in same folder cloned from Repo and run Make
+# Manual Image creation process
+# Note: You can also put epic binary (named epic-node) in same folder cloned from Repo and run make
+# Note: If tar downloaded from Repo or created with make, skip to docker run line
 
 $ docker pull ubuntu:20.04
 $ docker run -it --name epic-dock ubuntu:20.04 bash (create temp build container)
@@ -27,23 +28,25 @@ $ docker cp epic-node epic-dock:/home/epicnode/epic-node
 :~$ chmod +x epic-node
 
 $ <- run these from another terminal with container running and in Repo cloned folder
-$ docker commit --change='ENTRYPOINT ["/home/epicnode/entrypoint.sh"]' epic-dock epic-node
+$ docker commit --change='ENTRYPOINT ["/home/epicnode/entrypoint.sh"]' --change "ENV LANG=en_US.UTF-8" --change "USER epicnode" epic-dock epic-node
 $ docker save -o epic-docker.tar epic-node
 $ docker stop epic-dock
 $ docker rm epic-dock <-remove build container (no entrypoint)
 
 # Docker File Execution and Interaction
 
-* Create epic-node Image
-$ docker load < epic-docker.tar (downloaded from Repo, created with commit/save, or created with make)
+# Note: Create epic-node Image from .tar (if downloaded from Repo Release or created with make)
+# Note: Image epic-node already exists if created with commit/save, skip to docker run
+
+$ docker load < epic-docker.tar
 
 * Image epic-node ready to run as container epic-node
 
-* Run if built with Make and Dockerfile (USER and ENV already set)
+* Run if built with make and Dockerfile (USER and ENV already set)
 $ docker run --restart always --name epic-node -h 'epic-node' -d epic-node
 
 * Run if built manually with commit/save (needs USER and ENV 'LANG' set in cmd line)
-$ docker run --restart always --name epic-node -h 'epic-node' --user epicnode:epicnode -d -e LANG='en_US.UTF-8' epic-node 
+##$ docker run --restart always --name epic-node -h 'epic-node' --user epicnode:epicnode -d -e LANG='en_US.UTF-8' epic-node 
 
 * Check node running
 $ docker logs -f epic-node (<ctrl>C to exit)
