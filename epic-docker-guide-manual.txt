@@ -52,9 +52,9 @@ $ docker logs -f epic-node (<ctrl>C to exit) or $ docker stats (<ctrl>C to exit)
 # Interact with running Container
 
 $ docker exec -it epic-node bash
-epicnode@epic-node:/~$ screen -r server-node (attach to screen running EPIC node)
+epicnode@epic-node:~$ screen -r server-node (attach to screen running EPIC node)
   (Note: <ctrl>A then D to detach from screen and back to epicnode@epic-node:~$)
-epicnode@epic-node:/~$ exit (to leave Docker Container)
+epicnode@epic-node:~$ exit (to leave Docker Container)
 $
 
 # Stop/Start Container
