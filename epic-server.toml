@@ -103,7 +103,7 @@ seeding_type = "List"
 
 #If the seeding type is List, the list of peers to connect to can
 #be specified as follows:
-seeds = ["95.217.197.180:3517","5.161.127.56:3414","5.75.242.4:3414","5.78.71.29:3414"]
+seeds = ["155.138.197.0:3414", "144.202.75.237:3414"]
 
 #hardcoded peer lists for allow/deny
 #will *only* connect to peers in allow list
@@ -117,10 +117,10 @@ seeds = ["95.217.197.180:3517","5.161.127.56:3414","5.75.242.4:3414","5.78.71.29
 #ban_window = 10800
 
 #maximum number of inbound peers (default = 128)
-peer_max_inbound_count = 20
+peer_max_inbound_count = 40
 
 #maximum number of outbound peers (default = 128)
-peer_max_outbound_count = 20
+peer_max_outbound_count = 40
 
 #preferred minimum number of peers (we'll actively keep trying to add peers
 #until we get to at least this number
@@ -132,8 +132,10 @@ peer_max_outbound_count = 20
 # A preferred dandelion_peer, mainly used for testing dandelion
 # dandelion_peer = "10.0.0.1:13144"
 
-[server.p2p_config.capabilities]
-bits = 31
+capabilities = "HEADER_HIST | TXHASHSET_HIST | PEER_LIST | TX_KERNEL_HASH | HEADER_FASTSYNC"
+
+#[server.p2p_config.capabilities]
+#bits = 31
 
 
 #########################################
