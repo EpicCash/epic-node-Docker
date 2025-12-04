@@ -2,7 +2,4 @@
 .DELETE_ON_ERROR:
 
 epic-node-x86: Dockerfile epic-server.toml entrypoint.sh epic-node
-   docker buildx build --tag epic-node --build-arg ARCH=x86_64 --platform=linux/amd64 -o type=docker,dest=epic-docker.tar .
-
-
-
+   docker build --tag epic-node --build-arg ARCH=x86_64 --platform=linux/amd64 -o type=tar,dest=epic-docker.tar .
