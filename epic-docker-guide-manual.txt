@@ -1,7 +1,7 @@
 # Manual Docker Image creation process for Epic Node Server
 
-# Note: You can also put epic binary (renamed epic-node) in same folder cloned from Repo and run make
-# Note: If .tar downloaded from Repo Release or created with make, skip to 'docker load' line
+# Note: You can unzip epic.zip and rename epic-node in same folder cloned from Repo and run make
+# Note: If .tar created with make, skip to 'docker load' line
 
 $ docker pull ubuntu:24.04
 $ docker run -it --name epic-dock ubuntu:24.04 bash (create temp build container)
