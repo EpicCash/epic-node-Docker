@@ -1,7 +1,7 @@
 # Running Epic Node Server from Docker .tar created with Dockerfile
 
-# Note: Download .tar from Repo Release
-# Note: You can also put epic binary (renamed epic-node) in cloned Repo folder and run make to create .tar
+Unzip epic.zip and rename epic to epic-node in cloned Repo folder and run make to create .tar
+Note: epic binary is v4 and runs under Ubuntu 24.04
 
 # Create Image epic-node from .tar
 
