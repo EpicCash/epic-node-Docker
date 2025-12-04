@@ -3,8 +3,8 @@
 # Note: You can also put epic binary (renamed epic-node) in same folder cloned from Repo and run make
 # Note: If .tar downloaded from Repo Release or created with make, skip to 'docker load' line
 
-$ docker pull ubuntu:20.04
-$ docker run -it --name epic-dock ubuntu:20.04 bash (create temp build container)
+$ docker pull ubuntu:24.04
+$ docker run -it --name epic-dock ubuntu:24.04 bash (create temp build container)
 
 :/$ <- inside running container (as root)
 :/$ apt update
@@ -15,7 +15,6 @@ $ docker run -it --name epic-dock ubuntu:20.04 bash (create temp build container
 :/$ mkdir -p /home/epicnode/.epic/main
 
 $ <- run these from another terminal with container running and in Repo cloned folder
-$ docker cp foundation.json epic-dock:/home/epicnode/.epic/main/foundation.json
 $ docker cp epic-server.toml epic-dock:/home/epicnode/.epic/main/epic-server.toml
 $ docker cp entrypoint.sh epic-dock:/home/epicnode/entrypoint.sh
 $ docker cp epic-node epic-dock:/home/epicnode/epic-node
