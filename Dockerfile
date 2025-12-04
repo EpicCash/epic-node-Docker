@@ -4,8 +4,8 @@ RUN apt-get update \
   && apt-get install -y sudo openssl libncurses5 libncursesw5 libncursesw6 zlib1g screen locales \
   && rm -rf /var/lib/apt/lists/*
 
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en
+ENV LANG=en_US.UTF-8  
+ENV LANGUAGE=en_US:en
 RUN locale-gen en_US.UTF-8
 
 RUN useradd -u 1000 -G sudo -U -m -s /bin/bash epicnode \
