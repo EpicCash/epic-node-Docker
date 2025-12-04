@@ -23,6 +23,8 @@ RUN chmod +x epic-node
 
 COPY --chown=epicnode:epicnode epic-server.toml .epic/main/epic-server.toml
 
+EXPOSE 3413 3414 3415 3416
+
 ENTRYPOINT ["/home/epicnode/entrypoint.sh"]
 
 
