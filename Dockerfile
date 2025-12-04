@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 RUN apt-get update \
   && apt-get install -y sudo openssl libncurses5 libncursesw5 libncursesw6 zlib1g screen locales \
@@ -21,8 +21,8 @@ RUN chmod +x entrypoint.sh
 COPY --chown=epicnode:epicnode epic-node .
 RUN chmod +x epic-node
 
-COPY --chown=epicnode:epicnode foundation.json .epic/main/foundation.json
-COPY --chown=epicnode:epicnode epic-server.toml .epic/main/epic-server.toml
+#COPY --chown=epicnode:epicnode foundation.json .epic/main/foundation.json
+#COPY --chown=epicnode:epicnode epic-server.toml .epic/main/epic-server.toml
 
 ENTRYPOINT ["/home/epicnode/entrypoint.sh"]
 
