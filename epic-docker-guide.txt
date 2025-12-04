@@ -1,7 +1,18 @@
 # Running Epic Node Server from Docker .tar created with Dockerfile
 
-Unzip epic.zip and rename epic to epic-node in cloned Repo folder and run make to create .tar
-Note: epic binary is v4 and runs under Ubuntu 24.04
+# Clone the epic node repo - install git if you don't have it (sudo apt install git)
+
+$ git clone https://github.com/EpicCash/epic.git
+
+# Clone the epic-node-Docker Repo
+
+$git clone https://github.com/EpicCash/epic-node-Docker.git
+
+# Copy Dockerfile, Makefile, epic-server.toml, entrypoint.sh from epic-node-Docker folder to epic folder (you can rename Dockerfile in epic folder to keep old version before copy)
+
+# Create Docker .tar file in epic folder (Uses Dockerfile and Makefile)
+
+$ sudo make
 
 # Create Image epic-node from .tar
 
