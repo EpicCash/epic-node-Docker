@@ -47,15 +47,14 @@ $ docker start epic-node
 # get the bootstrap and re-sync on startup, so you get a fresh blockchain every restart. You may wish to skip
 # crontab and just let the node run until there is an issue that requires a Container restart.
 
-
-
 # Note: If node data becomes corrupted or server gets hung up:
-# Stop and delete Container and Image and re-run 'docker load' and 'docker run' lines above.
+# Stop and restart Container
+
+# To Remove Container and Image: (you need to load and run again to create a new Container from .tar->Image)
 
 $ docker stop epic-node
 $ docker rm epic-node
 $ docker rmi epic-node
 
-# Note: if chain_data becomes corrupted, stop and restart container
 
 
