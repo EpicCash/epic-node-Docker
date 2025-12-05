@@ -6,7 +6,7 @@ $ git clone https://github.com/EpicCash/epic.git
 
 # Clone the epic-node-Docker Repo
 
-$git clone https://github.com/EpicCash/epic-node-Docker.git
+$ git clone https://github.com/EpicCash/epic-node-Docker.git
 
 # Copy Dockerfile, Makefile, epic-server.toml, entrypoint.sh from epic-node-Docker folder to epic folder (you can rename Dockerfile in epic folder to keep old version before copy)
 
@@ -30,7 +30,7 @@ $ docker logs -f epic-node (<ctrl>C to exit) or $ docker stats (<ctrl>C to exit)
 
 $ docker exec -it epic-node bash
   epicnode@epic-node:~$ screen -r node-server (attach to screen running Epic Node Server)
-  <ctrl>A then D to detach from screen and back to epicnode@epic-node:~$
+# <ctrl>A then D to detach from screen and back to epicnode@epic-node:~$
   epicnode@epic-node:~$ exit (to leave Container)
 $
 
@@ -43,10 +43,13 @@ $ docker start epic-node
   5 1 */2 * * docker stop epic-node && sleep 20 && docker start epic-node
 
 # Note: If node data becomes corrupted or server gets hung up:
-# Stop and delete Container and Image and re-run 'docker load' and run lines above.
+# Stop and delete Container and Image and re-run 'docker load' and 'docker run' lines above.
 
 $ docker stop epic-node
 $ docker rm epic-node
 $ docker rmi epic-node
+
+# Note: if chain_data becomes corrupted, in container delete ~/.epic/main/bs and restart container. It will download bootstrap and re-sync
+
 
 
