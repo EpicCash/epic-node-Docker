@@ -36,6 +36,7 @@ RUN apt-get update && \
         sudo \
         wget \
         unzip \
+        screen \
         locales \
         openssl \
         libncursesw6 \
@@ -48,7 +49,7 @@ RUN useradd -u 1000 -G sudo -U -m -s /bin/bash epicnode \
   && echo "epicnode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 WORKDIR /home/epicnode
-#USER epicnode
+
 RUN sudo -u epicnode mkdir -p /home/epicnode/.epic/main
 
 COPY --chown=epicnode:epicnode entrypoint.sh .
@@ -62,6 +63,7 @@ RUN chmod +x ./epic-node
 
 COPY --chown=epicnode:epicnode epic-server.toml .epic/main/epic-server.toml
 
+USER epicnode
 EXPOSE 3413 3414 3415 3416
 
 ENTRYPOINT ["/home/epicnode/entrypoint.sh"]
