@@ -117,10 +117,10 @@ seeds = ["155.138.197.0:3414", "144.202.75.237:3414"]
 #ban_window = 10800
 
 #maximum number of inbound peers (default = 128)
-peer_max_inbound_count = 40
+peer_max_inbound_count = 20
 
 #maximum number of outbound peers (default = 128)
-peer_max_outbound_count = 40
+peer_max_outbound_count = 20
 
 #preferred minimum number of peers (we'll actively keep trying to add peers
 #until we get to at least this number
