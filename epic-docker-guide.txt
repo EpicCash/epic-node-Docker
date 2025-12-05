@@ -40,7 +40,14 @@ $ docker stop epic-node
 $ docker start epic-node
 
 # Edit crontab (crontab -e) to restart every other day (add to end of crontab file <ctrl>X then Y to save)
+
   5 1 */2 * * docker stop epic-node && sleep 20 && docker start epic-node
+
+# Note: Docker Container (changed) contents are not persistent. So if you stop and restart, it will have to
+# get the bootstrap and re-sync on startup, so you get a fresh blockchain every restart. You may wish to skip
+# crontab and just let the node run until there is an issue that requires a Container restart.
+
+
 
 # Note: If node data becomes corrupted or server gets hung up:
 # Stop and delete Container and Image and re-run 'docker load' and 'docker run' lines above.
@@ -49,7 +56,6 @@ $ docker stop epic-node
 $ docker rm epic-node
 $ docker rmi epic-node
 
-# Note: if chain_data becomes corrupted, in container delete ~/.epic/main/bs and restart container. It will download bootstrap and re-sync
-
+# Note: if chain_data becomes corrupted, stop and restart container
 
 
