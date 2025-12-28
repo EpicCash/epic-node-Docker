@@ -1,0 +1,25 @@
+#
+# To install:
+# sudo cp epicnode.service /etc/systemd/system/epicnode.service
+# sudo systemctl daemon-reload
+# sudo systemctl start epicnode.service
+# sudo systemctl enable epicnode.service
+#
+[Unit]
+Description=Epic Node Server service 
+After=network.target
+
+[Service]
+ExecStart=/home/epicsvcs/startnode
+WorkingDirectory=/home/epicsvcs
+Restart=always
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=epicnode
+User=epicsvcs
+Group=epicsvcs
+Environment=RUST_LOG=info
+
+[Install]
+WantedBy=multi-user.target
+

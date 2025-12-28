@@ -1,0 +1,25 @@
+#
+# To install:
+# sudo cp epicbox.service /etc/systemd/system/epicbox.service
+# sudo systemctl daemon-reload
+# sudo systemctl start epicbox.service
+# sudo systemctl enable epicbox.service
+#
+[Unit]
+Description=Epicbox Server service 
+After=network.target
+
+[Service]
+ExecStart=/home/epicsvcs/startebox
+WorkingDirectory=/home/epicsvcs
+Restart=always
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=epicbox
+User=epicsvcs
+Group=epicsvcs
+Environment=RUST_LOG=info
+
+[Install]
+WantedBy=multi-user.target
+
