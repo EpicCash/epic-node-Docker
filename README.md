@@ -1,4 +1,6 @@
 # epic-node-Docker
+Note: Under Construction - requires nginx and certbot to access node via https 
+
 Docker Files for Epic Server Node
 
 See epic-docker-guide.txt for instructions to use .tar created with make from repos
