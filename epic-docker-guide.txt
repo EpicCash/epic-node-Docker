@@ -6,10 +6,10 @@ $ git clone https://github.com/EpicCash/epic.git
 
 # Clone the epic-node-docker Repo
 
-$ git clone https://github.com/EpicCash/epic-node-Docker.git
+$ git clone https://github.com/EpicCash/epic-node-docker.git
 
-# Copy Dockerfile, epic-server.toml, entrypoint.sh,  epicnode.nginx
-# from epic-node-Docker folder to epic folder
+# Copy Dockerfile, epic-server.toml, entrypoint.sh, epicnode.nginx
+# from epic-node-docker folder to epic folder
 
 $ cd epic
 
@@ -23,32 +23,33 @@ $ cd epic
 # If you don't need public access to the node (to check status) you can just forward port 3413 and skip ddns: comment out the 
 # check for certs section at the bottom of entrypoint.sh and 'nginx \' & 'COPY epicnode.nginx...' in Dockerfile as you won't need nginx
 
+# A Docker Compose file is included to build and start:
 
-# A Docker Compose file is included to build and start: 'sudo docker compose up -d --build'
+$ sudo docker compose up -d
 
 # Check node running - you should see progress of bootstrap download and unzip then (optional) cert creation:
 
-$ sudo docker logs -f epic-svcs (<ctrl>C to exit)
+$ sudo docker logs -f epic-node (<ctrl>C to exit)
 
 # Interact with running container
 
-$ sudo docker exec -it epic-svcs bash
+$ sudo docker exec -it epic-node bash
 
-  epicsvcs@epic-svcs:~$ screen -r epicnode (attach to screen running Epic Node Server)
-
-# <ctrl>A then D to detach from screen
-
-  epicsvcs@epic-svcs:~$ screen -r epicbox (attach to screen running epicbox Server)
+  epicsvcs@epic-node:~$ screen -r epicnode (attach to screen running Epic Node Server)
 
 # <ctrl>A then D to detach from screen
 
-  epicsvcs@epic-svcs:~$ exit (to leave Container)
+  epicsvcs@epic-node:~$ screen -r epicbox (attach to screen running epicbox Server)
+
+# <ctrl>A then D to detach from screen
+
+  epicsvcs@epic-node:~$ exit (to leave Container)
 $
 
 # Stop/Start Container
 
-$ sudo docker stop epic-svcs
-$ sudo docker start epic-svcs
+$ sudo docker stop epic-node
+$ sudo docker start epic-node
 
 # Note: If node data becomes corrupted or server gets hung up:
 # Stop Container and remove bs file in /var/lib/docker/volumes/epicdata/_data and restart Container
@@ -56,9 +57,9 @@ $ sudo docker start epic-svcs
 
 # To Remove Container and Image: (you need to load and run again to create a new Container from .tar->Image)
 
-$ sudo docker stop epic-svcs
-$ sudo docker rm epic-svcs
-$ sudo docker rmi epic-svcs
+$ sudo docker stop epic-node
+$ sudo docker rm epic-node
+$ sudo docker rmi epic-node
 
 # Note: If you are running the Docker on a LAN server you will need to forward ports 3413, 3414 to the server IP.
 
