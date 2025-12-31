@@ -12,6 +12,17 @@ else
 	echo "Done"
 fi
 
-/usr/bin/screen -dmS node-server /home/epicnode/epic-node
+/usr/bin/screen -dmS epicnode /home/epicsvcs/epic-node
+#/usr/bin/screen -dmS epicbox /home/epicsvcs/epicbox
+
+# check for cert if not there then run certbot to create certs
+
+if [ -e /etc/letsencrypt/live/node.mydomain.somedomain.dom/fullchain.pem ]
+then
+   echo "Certs Exist"
+else
+   sudo certbot --nginx --non-interactive --agree-tos -m webmaster@example.com -d node.mydomain.somedomain.dom
+fi
 tail -f /dev/null
+
 

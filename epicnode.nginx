@@ -1,0 +1,20 @@
+server {
+    
+        listen 3413;
+        server_name node.mydomain.dynamix.me;
+
+        root /var/www/html/;
+        index index.html index.htm;
+        
+        location / {
+
+	    # set this to the BIND_ADDRESS=0.0.0.0:3433 
+            proxy_pass http://127.0.0.1:3433;  
+            proxy_read_timeout  1h; 
+            
+        }
+    
+
+}
+
+

@@ -1,0 +1,41 @@
+version: "3.6"
+services:
+  epic-svcs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: epic-node
+    restart: always
+    entrypoint:
+      - "/home/epicsvcs/entrypoint.sh"
+    environment:
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - "LANG=en_US.UTF-8"
+      - "LANGUAGE=en_US:en"
+    hostname: "epic-node"
+    ipc: "private"
+    labels:
+      org.opencontainers.image.ref.name: "ubuntu"
+      org.opencontainers.image.version: "24.04"
+    logging:
+      driver: "json-file"
+      options: {}
+    networks:
+      - "epicsvcs"
+    ports:
+      - "3413:3413/tcp"
+      - "3414:3414/tcp"
+      - "443:443/tcp"
+      - "80:80/tcp"
+    user: "epicsvcs"
+    volumes:
+      - "epiccerts:/etc/letsencrypt"
+      - "epicdata:/home/epicsvcs/.epic/main"
+    working_dir: "/home/epicsvcs"
+
+volumes:
+  epiccerts:
+    external: true
+  epicdata:
+    external: true
+
