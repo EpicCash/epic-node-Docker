@@ -12,18 +12,10 @@ RUN apt-get update --fix-missing && \
         git \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/src/epic
-
+RUN git clone https://github.com/EpicCash/epic.git
+WORKDIR epic
 COPY . .
-
 RUN cargo build --release
-
-# ---- Runtime Stage ----
-#FROM ubuntu:24.04
-
-#RUN apt-get update \
-#  && apt-get install -y sudo openssl libncurses5 libncursesw5 libncursesw6 zlib1g screen locales \
-#  && rm -rf /var/lib/apt/lists/*
 
 FROM ubuntu:24.04
 
@@ -59,7 +51,7 @@ RUN sudo -u epicsvcs mkdir -p /home/epicsvcs/.epic/main
 COPY --chown=epicsvcs:epicsvcs entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
-COPY --from=builder /usr/src/epic/target/release/epic ./epic-node
+COPY --from=builder /epic/target/release/epic ./epic-node
 
 RUN chown epicsvcs:epicsvcs ./epic-node
 
