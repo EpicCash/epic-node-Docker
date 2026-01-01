@@ -1,17 +1,10 @@
 # Running Epic Node Server from Docker 
 
-# Clone the epic node repo - install git if you don't have it (sudo apt install git) Make sure you clone latest (check tags, branches, or releases)
-
-$ git clone https://github.com/EpicCash/epic.git
-
 # Clone the epic-node-docker Repo
 
 $ git clone https://github.com/EpicCash/epic-node-docker.git
 
-# Copy Dockerfile, epic-server.toml, entrypoint.sh, epicnode.nginx
-# from epic-node-docker folder to epic folder
-
-$ cd epic
+$ cd epic-node-docker
 
 # Providing access to node to check status (optional) https:/node.yourdomain.dom:3413/v1/status
 # Public access to node is done using nginx and a domain name. You will need a ddns account. Go here: https://freedns.afraid.org
@@ -48,16 +41,18 @@ $
 
 # Stop/Start Container
 
-$ sudo docker stop epic-node
-$ sudo docker start epic-node
+$ sudo docker compose down
+$ sudo docker compose up -d
 
-# Note: If node data becomes corrupted or server gets hung up:
-# Stop Container and remove bs file in /var/lib/docker/volumes/epicdata/_data and restart Container
-# It will download bootstrap and re-sync on startup
+# Note: Docker Container (changed) contents are persistent using local volume
 
-# To Remove Container and Image: (you need to load and run again to create a new Container from .tar->Image)
+# If node data becomes corrupted or server gets hung up:
+# Stop Container
+# Delete bs file in /var/lib/docker/volumes/epicdata/_data
+# Start Container - it will download Bootstrap, unzip, and finish a fresh sync
 
-$ sudo docker stop epic-node
+# Remove entire installation:
+$ sudo docker compose down
 $ sudo docker rm epic-node
 $ sudo docker rmi epic-node
 
