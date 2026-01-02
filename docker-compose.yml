@@ -1,5 +1,5 @@
 services:
-  epic-svcs:
+  epic-node:
     build:
       context: .
       dockerfile: Dockerfile
