@@ -5,6 +5,7 @@
 $ git clone https://github.com/EpicCash/epic-node-docker.git
 
 $ cd epic-node-docker
+$ git submodule update --init --recursive
 
 # Providing access to node to check status (optional) https:/node.yourdomain.dom:3413/v1/status
 # Public access to node is done using nginx and a domain name. You will need a ddns account. Go here: https://freedns.afraid.org
