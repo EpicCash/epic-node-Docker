@@ -14,6 +14,7 @@ RUN apt-get update --fix-missing && \
 
 RUN git clone https://github.com/EpicCash/epic.git
 WORKDIR epic
+RUN git submodule update --init --recursive
 COPY . .
 RUN cargo build --release
 
