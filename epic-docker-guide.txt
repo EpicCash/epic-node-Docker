@@ -16,6 +16,9 @@ $ cd epic-node-docker
 # If you don't need public access to the node (to check status) you can just forward port 3413 and skip ddns: comment out the 
 # check for certs section at the bottom of entrypoint.sh and 'nginx \' & 'COPY epicnode.nginx...' in Dockerfile as you won't need nginx
 
+# Create a local volume for node data
+$ sudo docker volume create epicdata
+
 # A Docker Compose file is included to build and start:
 # Add your user to the docker group so you don’t need sudo for every command.
 
